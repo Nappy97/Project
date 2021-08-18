@@ -62,7 +62,12 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "title = " + title + ", director = " + director + ", grade = " + grade + ", genre = " + genre + ", summary = " + summary + "\n";
+        String title = " 영화제목 : " +  this.getTitle();
+        String director = " 영화감독 : " + this.getDirector();
+        String grade = " 영화 등급 : " + this.getGrade();
+        String summery = " 영화 요약 : " + this.getSummary();
+        String join("\n", title, director, grade, summery);
+        return join;
     }
 
 }

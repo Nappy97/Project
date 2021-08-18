@@ -10,16 +10,16 @@ public class MovieMgrImpl {
     public MovieMgrImpl() {
     }
 
-    public void addTheater(){
+    public void addTheater() {
         Theater theater = new Theater();
         theater.setNum(index);
         theaters[index] = theater;
-        System.out.println(index "번 영화관이 정상적으로 등록되었습니다");
+        System.out.println(index"번 영화관이 정상적으로 등록되었습니다");
         index++;
 
     }
 
-    public void addMovie(String title, String director, String grade, String summery, int theaterNum){
+    public void addMovie(String title, String director, String grade, String summery, int theaterNum) {
         Movie movie = new Movie();
         movie.setTitle(title);
         movie.setDirector(director);
@@ -27,7 +27,13 @@ public class MovieMgrImpl {
         movie.setSummary(summery);
 
         theaters[theaterNum].movie = movie;
-        System.out.println(movie.getTitle() "가 영화가 " + theaterNum +" 에 정상적으로 등록되었습니다");
+        printMovie(theaters[theaterNum]);
+    }
+
+    public void printMovie(Theater theater) {
+        String T = theater.movie.getTitle();
+        String theaterNum = String.valueOf(theater.num);
+        System.out.println(T + theaterNum);
     }
 
 
