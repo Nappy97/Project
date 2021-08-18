@@ -3,9 +3,6 @@ package com.nappy.Movie1;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import com.nappy.Movie1.TheaterManger;
-
-import static com.nappy.Movie1.TheaterManger.theaters;
 
 public class TicketOffice {
     public static void main(String[] args) {
@@ -20,6 +17,7 @@ public class TicketOffice {
             Scanner sc1 = new Scanner(System.in);
             System.out.println("영화관리프로그램");
             MovieMgrImpl movieMgr = MovieMgrImpl.getInstance();
+
 
             boolean flag = true;
 
@@ -47,7 +45,7 @@ public class TicketOffice {
                         System.out.println("요약 입력");
                         String mvSum = sc.next();
                         System.out.println("영화관을 지정해주세요");
-                        if (com.nappy.Movie1.TheaterManger.ans == true) {
+                        if (com.nappy.Movie1.MovieMgrImpl.ans == true) {
                             System.out.println("영화관이 존재하지 않습니다");
                         } else {
                             System.out.println("영화관이 추가되었습니다");
@@ -80,12 +78,25 @@ public class TicketOffice {
                         System.out.println("삭제완료");
                         break;
 
-                   /* case 7:
+                    case 7:
                         System.out.println("1. 영화관 추가");
                         System.out.println("2. 영화관 삭제");
-                        int thNum = sc.nextInt();
-                        movieMgr.add(new theaters(thNum));*/
+                        int num1 = sc.nextInt();
+                        if (num1 == 1) {
+                            System.out.println("몇 번 영화관을 추가하시겠습니까");
+                            int thNum = sc.nextInt();
+                            movieMgr.add(new Theater(thNum));
+                            for (Theater t : MovieMgrImpl.getNum()) {
+                                if (t != null) {
+                                    System.out.println(t.getNum());
+                                }
+                            }
 
+                        } else if ( num1 == 2){
+                            System.out.println("몇번 영화관을 삭제하시겠습니까?");
+                            int thNum = sc.nextInt();
+                            movieMgr.delete(thNum);
+                        }
                     case 8:
                         for (int i = 0; i < mvName.length(); i++)
                             System.out.println("이름: " + mvName[i]);
@@ -96,3 +107,6 @@ public class TicketOffice {
                         break;
                 }
             }
+        }
+    }
+}

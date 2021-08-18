@@ -1,8 +1,9 @@
 package com.nappy.Movie1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MovieMgrImpl implements MovieManager {
+public class MovieMgrImpl extends Theater implements MovieManager {
     private Movie[] movies = new Movie[100];
     private int index;
     private static MovieMgrImpl mgr = new MovieMgrImpl();
@@ -100,8 +101,20 @@ public class MovieMgrImpl implements MovieManager {
         return index;
     }
 
-    private Theater[] theaters = new Theater[100];
+    public void add(Theater t) {
+        theaters.set(index++, t);
+    }
 
+    static ArrayList<Theater> theaters = new ArrayList<Theater>(100);
+    static boolean ans = theaters.isEmpty();
 
+    public void add(com.nappy.Movie.Theater t) {
+        com.nappy.Movie.Theater[] theaters = new com.nappy.Movie.Theater[100];
+        theaters[index++] = t;
+    }
 
 }
+
+
+
+

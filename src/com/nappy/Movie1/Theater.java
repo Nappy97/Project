@@ -1,8 +1,9 @@
 package com.nappy.Movie1;
+
 import java.util.*;
 
 public class Theater {
-   public int num;
+    public int num;
 
 
     public Theater() {
