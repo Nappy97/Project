@@ -105,8 +105,8 @@ public class MovieMgrImpl extends Theater implements MovieManager {
         theaters.set(index++, t);
     }
 
-    static ArrayList<Theater> theaters = new ArrayList<Theater>(100);
-    static boolean ans = theaters.isEmpty();
+    ArrayList<Theater> theaters = new ArrayList<Theater>(100);
+    boolean ans = theaters.isEmpty();
 
     public void add(com.nappy.Movie.Theater t) {
         com.nappy.Movie.Theater[] theaters = new com.nappy.Movie.Theater[100];
