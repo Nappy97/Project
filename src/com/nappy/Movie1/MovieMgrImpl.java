@@ -1,8 +1,8 @@
-package com.nappy.Movie;
+package com.nappy.Movie1;
 
 import java.util.Arrays;
 
-public class MovieMgrImpl extends Theater implements MovieManager {
+public class MovieMgrImpl implements MovieManager {
     private Movie[] movies = new Movie[100];
     private int index;
     private static MovieMgrImpl mgr = new MovieMgrImpl();
@@ -102,17 +102,6 @@ public class MovieMgrImpl extends Theater implements MovieManager {
 
     private Theater[] theaters = new Theater[100];
 
-    public void add(Theater t){
-        theaters[index++] = t;
-    }
-    public Theater[] getTheater(){
-        return theaters;
-    }
 
-    public void delete(int num){}
-
-    public Theater[] theaters(){
-
-    }
 
 }
