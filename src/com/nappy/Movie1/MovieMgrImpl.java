@@ -3,15 +3,35 @@ package com.nappy.Movie1;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MovieMgrImpl extends Theater implements MovieManager {
-    private Movie[] movies = new Movie[100];
-    private int index;
-    private static MovieMgrImpl mgr = new MovieMgrImpl();
+public class MovieMgrImpl {
+    private Theater[] theaters = new Theater[100];
+    private int index = 0;
 
-    private MovieMgrImpl() {
+    public MovieMgrImpl() {
     }
 
-    public static MovieMgrImpl getInstance() {
+    public void addTheater(){
+        Theater theater = new Theater();
+        theater.setNum(index);
+        theaters[index] = theater;
+        System.out.println(index "번 영화관이 정상적으로 등록되었습니다");
+        index++;
+
+    }
+
+    public void addMovie(String title, String director, String grade, String summery, int theaterNum){
+        Movie movie = new Movie();
+        movie.setTitle(title);
+        movie.setDirector(director);
+        movie.setGrade(grade);
+        movie.setSummary(summery);
+
+        theaters[theaterNum].movie = movie;
+        System.out.println(movie.getTitle() "가 영화가 " + theaterNum +" 에 정상적으로 등록되었습니다");
+    }
+
+
+/*    public static MovieMgrImpl getInstance() {
         return mgr;
     }
 
@@ -111,7 +131,8 @@ public class MovieMgrImpl extends Theater implements MovieManager {
     public void add(com.nappy.Movie.Theater t) {
         com.nappy.Movie.Theater[] theaters = new com.nappy.Movie.Theater[100];
         theaters[index++] = t;
-    }
+    }*/
+
 
 }
 

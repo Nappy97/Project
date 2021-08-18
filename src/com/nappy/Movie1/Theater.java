@@ -5,7 +5,8 @@ import java.util.*;
 public class Theater {
     public int num;
 
-
+    public Movie movie;
+    public char[][] sheets = new char [10][10];
     public Theater() {
     }
 
@@ -18,7 +19,7 @@ public class Theater {
         return num;
     }
 
-    public void setNum() {
+    public void setNum(int num) {
         this.num = num;
     }
 }

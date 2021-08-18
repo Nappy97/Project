@@ -3,7 +3,7 @@ package com.nappy.Movie1;
 public class Movie {
     private String title;
     private String director;
-    private int grade;
+    private String grade;
     private String genre;
     private String summary;
 
@@ -36,11 +36,11 @@ public class Movie {
         this.director = director;
     }
 
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 

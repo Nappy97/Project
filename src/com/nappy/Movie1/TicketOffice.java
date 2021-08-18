@@ -11,13 +11,10 @@ public class TicketOffice {
         System.out.println("어서오세요~ 아무 키나 입력하여 시작해주세요");
         String name = "";
         name = sc.nextLine();
-
+        MovieMgrImpl mgr = new MovieMgrImpl();
 
         if (name.equals("cheong")) {
-            Scanner sc1 = new Scanner(System.in);
             System.out.println("영화관리프로그램");
-            MovieMgrImpl movieMgr = MovieMgrImpl.getInstance();
-
 
             boolean flag = true;
 
@@ -34,27 +31,30 @@ public class TicketOffice {
                 System.out.println("10. 종료");
 
                 int selectNum = sc.nextInt();
+                sc.nextLine();
                 switch (selectNum) {
                     case 1:
-                        System.out.println("영화명 입력");
-                        String mvName = sc.next();
-                        System.out.println("감독명 입력");
-                        String mvDir = sc.next();
-                        System.out.println("등급 입력");
-                        String mvGr1 = sc.next();
-                        System.out.println("요약 입력");
-                        String mvSum = sc.next();
-                        System.out.println("영화관을 지정해주세요");
-                        if (com.nappy.Movie1.MovieMgrImpl.ans == true) {
-                            System.out.println("영화관이 존재하지 않습니다");
-                        } else {
-                            System.out.println("영화관이 추가되었습니다");
-                        }
-                        break;
-                    case 2:
-                        System.out.println(Arrays.toString(movieMgr.search()));
+                        System.out.println("상영관등록");
+                        mgr.addTheater();
                         break;
 
+                    case 2:
+                        sc.reset();
+                        System.out.println("영화명 입력");
+                        String mvName = sc.nextLine();
+                        System.out.println("감독명 입력");
+                        String mvDir = sc.nextLine();
+                        System.out.println("등급 입력");
+                        String mvGr1 = sc.nextLine();
+                        System.out.println("요약 입력");
+                        String mvSum = sc.nextLine();
+                        System.out.println("영화관 번호");
+                        int theaterNum = sc.nextInt();
+                        mgr.addMovie(mvName, mvDir,mvGr1, mvSum, theaterNum);
+                        break;
+
+
+                   /*
                     case 3:
                         System.out.println("제목을 입력");
                         mvName = sc.next();
@@ -109,4 +109,4 @@ public class TicketOffice {
             }
         }
     }
-}
+}*/
