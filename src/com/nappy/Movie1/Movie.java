@@ -3,7 +3,7 @@ package com.nappy.Movie1;
 public class Movie {
     private String title;
     private String director;
-    private String grade;
+    private int grade;
     private String genre;
     private String summary;
 
@@ -36,11 +36,11 @@ public class Movie {
         this.director = director;
     }
 
-    public String getGrade() {
+    public int getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(int grade) {
         this.grade = grade;
     }
 
@@ -60,14 +60,7 @@ public class Movie {
         this.summary = summary;
     }
 
-    @Override
-    public String toString() {
-        String title = " 영화제목 : " +  this.getTitle();
-        String director = " 영화감독 : " + this.getDirector();
-        String grade = " 영화 등급 : " + this.getGrade();
-        String summery = " 영화 요약 : " + this.getSummary();
-        String join("\n", title, director, grade, summery);
-        return join;
-    }
 
 }
+
+

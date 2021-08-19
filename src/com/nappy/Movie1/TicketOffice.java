@@ -1,7 +1,10 @@
 package com.nappy.Movie1;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
+
+import com.nappy.Movie1.MovieMgrImpl;
 
 
 public class TicketOffice {
@@ -12,6 +15,8 @@ public class TicketOffice {
         String name = "";
         name = sc.nextLine();
         MovieMgrImpl mgr = new MovieMgrImpl();
+        String mvName = "";
+
 
         if (name.equals("cheong")) {
             System.out.println("영화관리프로그램");
@@ -19,8 +24,8 @@ public class TicketOffice {
             boolean flag = true;
 
             while (flag) {
-                System.out.println("1. 영화 정보 입력");
-                System.out.println("2. 영화 정보 전체 검색");
+                System.out.println("1. 상영관 등록");
+                System.out.println("2. 영화 정보 등록");
                 System.out.println("3. 영화명 검색");
                 System.out.println("4. 영화 감독별검색");
                 System.out.println("5. 영화 장르별 검색");
@@ -33,6 +38,7 @@ public class TicketOffice {
                 int selectNum = sc.nextInt();
                 sc.nextLine();
                 switch (selectNum) {
+
                     case 1:
                         System.out.println("상영관등록");
                         mgr.addTheater();
@@ -41,17 +47,36 @@ public class TicketOffice {
                     case 2:
                         sc.reset();
                         System.out.println("영화명 입력");
-                        String mvName = sc.nextLine();
+                        mvName = sc.nextLine();
                         System.out.println("감독명 입력");
                         String mvDir = sc.nextLine();
                         System.out.println("등급 입력");
-                        String mvGr1 = sc.nextLine();
+                        int mvGr1 = sc.nextInt();
                         System.out.println("요약 입력");
                         String mvSum = sc.nextLine();
                         System.out.println("영화관 번호");
                         int theaterNum = sc.nextInt();
-                        mgr.addMovie(mvName, mvDir,mvGr1, mvSum, theaterNum);
+                        mgr.addMovie(mvName, mvDir, mvGr1, mvSum, theaterNum);
                         break;
+
+                    case 3:
+                        sc.reset();
+                        for (int i = 0; i < mgr.index; i++) {
+                            System.out.println(mgr.theaters[i] + "번 상영관의 영화는 " + mvName);
+                        }
+                        break;
+
+                    case 4:
+                        System.out.println("1. 제목으로 검색");
+                        System.out.println("2. 감독으로 검색");
+                        System.out.println("3. 등급으로 검색");
+                        mvName = sc.next();
+                        System.out.println(Arrays.toString(mgr.search));
+                }
+            }
+        }
+    }
+}
 
 
                    /*

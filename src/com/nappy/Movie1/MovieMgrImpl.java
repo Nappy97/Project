@@ -1,11 +1,8 @@
 package com.nappy.Movie1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class MovieMgrImpl {
-    private Theater[] theaters = new Theater[100];
-    private int index = 0;
+    public Theater[] theaters = new Theater[100];
+    public int index = 0;
 
     public MovieMgrImpl() {
     }
@@ -14,12 +11,15 @@ public class MovieMgrImpl {
         Theater theater = new Theater();
         theater.setNum(index);
         theaters[index] = theater;
-        System.out.println(index"번 영화관이 정상적으로 등록되었습니다");
+        System.out.println(index+"번 영화관이 정상적으로 등록되었습니다");
         index++;
 
     }
+    public int totalTheater(){
+        return index;
+    }
 
-    public void addMovie(String title, String director, String grade, String summery, int theaterNum) {
+    public void addMovie(String title, String director, int grade, String summery, int theaterNum) {
         Movie movie = new Movie();
         movie.setTitle(title);
         movie.setDirector(director);
