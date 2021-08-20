@@ -1,5 +1,7 @@
 package com.nappy.Movie1;
 
+import java.util.Arrays;
+
 public class MovieMgrImpl {
     public Theater[] theaters = new Theater[100];
     public int index = 0;
@@ -36,8 +38,26 @@ public class MovieMgrImpl {
         System.out.println(T + theaterNum);
     }
 
+    public void delete(String title) {
+        int count = 0;
+        for (Movie m : theaters) {
+            if (m == null) continue;
+            else if (m.getDirector().equals(title)) count++;
+        }
 
-/*    public static MovieMgrImpl getInstance() {
+        Movie[] ms = new Movie[index - count];
+        int idx = 0;
+        for (Movie m : theaters) {
+            if (m == null) continue;
+            else if (m.getTitle().equals(title)) continue;
+            else ms[idx++] = m;
+        }
+
+        System.out.println(Arrays.toString(ms));
+    }
+
+
+/*   public static MovieMgrImpl getInstance() {
         return mgr;
     }
 
@@ -105,23 +125,7 @@ public class MovieMgrImpl {
         return ms2;
     }
 
-    public void delete(String title) {
-        int count = 0;
-        for (Movie m : movies) {
-            if (m == null) continue;
-            else if (m.getDirector().equals(title)) count++;
-        }
 
-        Movie[] ms = new Movie[index - count];
-        int idx = 0;
-        for (Movie m : movies) {
-            if (m == null) continue;
-            else if (m.getTitle().equals(title)) continue;
-            else ms[idx++] = m;
-        }
-
-        System.out.println(Arrays.toString(ms));
-    }
 
     public int getSize() {
         return index;

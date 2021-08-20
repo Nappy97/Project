@@ -15,6 +15,7 @@ public class TicketOffice {
         String name = "";
         name = sc.nextLine();
         MovieMgrImpl mgr = new MovieMgrImpl();
+        Search search = new Search();
         String mvName = "";
 
 
@@ -53,7 +54,7 @@ public class TicketOffice {
                         System.out.println("등급 입력");
                         int mvGr1 = sc.nextInt();
                         System.out.println("요약 입력");
-                        String mvSum = sc.nextLine();
+                        String mvSum = sc.next();
                         System.out.println("영화관 번호");
                         int theaterNum = sc.nextInt();
                         mgr.addMovie(mvName, mvDir, mvGr1, mvSum, theaterNum);
@@ -67,16 +68,48 @@ public class TicketOffice {
                         break;
 
                     case 4:
+                        sc.reset();
                         System.out.println("1. 제목으로 검색");
                         System.out.println("2. 감독으로 검색");
-                        System.out.println("3. 등급으로 검색");
+                        System.out.println("3. 장르로 검색");
+
+                        int selectNum1 = sc.nextInt();
+                        sc.nextLine();
+                        switch (selectNum1) {
+                            case 1:
+                                System.out.println("제목을 입력");
+                                mvName = sc.next();
+                                System.out.println(Arrays.toString(search.search(mvName)));
+                                break;
+                            case 2:
+                                System.out.println("감독명 입력");
+                                mvDir = sc.next();
+                                System.out.println(Arrays.toString(search.searchDirector(mvDir)));
+                                break;
+
+                        }
+                        break;
+
+                    case 5:
+                        System.out.println("삭제하고 하는 영화의 제목을 입력해주세요");
                         mvName = sc.next();
-                        System.out.println(Arrays.toString(mgr.search));
+                        mgr.delete(mvName);
+                        System.out.println("삭제완료");
+                        break;
+
+                    case 0:
+                        flag = false;
+                        break;
+
+
                 }
             }
+        } else {
+
         }
     }
 }
+
 
 
                    /*

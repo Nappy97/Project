@@ -2,9 +2,8 @@ package com.nappy.Movie1;
 
 import java.util.*;
 
-public class Theater {
+public class Theater extends Movie{
     public int num;
-
     public Movie movie;
     public char[][] sheets = new char [10][10];
     public Theater() {
