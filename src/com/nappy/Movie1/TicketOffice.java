@@ -17,6 +17,7 @@ public class TicketOffice {
         MovieMgrImpl mgr = new MovieMgrImpl();
         Search search = new Search();
         String mvName = "";
+        String mvDir ="";
 
 
         if (name.equals("cheong")) {
@@ -27,14 +28,10 @@ public class TicketOffice {
             while (flag) {
                 System.out.println("1. 상영관 등록");
                 System.out.println("2. 영화 정보 등록");
-                System.out.println("3. 영화명 검색");
-                System.out.println("4. 영화 감독별검색");
-                System.out.println("5. 영화 장르별 검색");
-                System.out.println("6. 영화 정보 삭제");
-                System.out.println("7. 영화관 관리");
-                System.out.println("8. 영화목록 확인");
-                System.out.println("9. 회원 정보 보기");
-                System.out.println("10. 종료");
+                System.out.println("3. 영화 info");
+                System.out.println("4. 영화 검색");
+                System.out.println("5. 영화 삭제");
+                System.out.println("6. 종료");
 
                 int selectNum = sc.nextInt();
                 sc.nextLine();
@@ -50,7 +47,7 @@ public class TicketOffice {
                         System.out.println("영화명 입력");
                         mvName = sc.nextLine();
                         System.out.println("감독명 입력");
-                        String mvDir = sc.nextLine();
+                        mvDir = sc.nextLine();
                         System.out.println("등급 입력");
                         int mvGr1 = sc.nextInt();
                         System.out.println("요약 입력");
@@ -105,11 +102,71 @@ public class TicketOffice {
                 }
             }
         } else {
+            System.out.println("영화안내프로그램");
 
+            boolean flag = true;
+
+            while (flag) {
+                System.out.println("1. 예매");
+                System.out.println("2. 검색");
+                System.out.println("3. 예매취소");
+                System.out.println("4. 종료");
+
+                int selectNum = sc.nextInt();
+                sc.nextLine();
+                switch (selectNum) {
+                    case 1:
+                        System.out.println("");
+                        break;
+
+                    case 2:
+                        sc.reset();
+                        System.out.println("1. 제목으로 검색");
+                        System.out.println("2. 감독으로 검색");
+                        System.out.println("3. 장르로 검색");
+
+                        int selectNum1 = sc.nextInt();
+                        sc.nextLine();
+                        switch (selectNum1) {
+                            case 1:
+                                System.out.println("제목을 입력");
+                                mvName = sc.next();
+                                System.out.println(Arrays.toString(search.search(mvName)));
+                                break;
+                            case 2:
+                                System.out.println("감독명 입력");
+                                mvDir = sc.next();
+                                System.out.println(Arrays.toString(search.searchDirector(mvDir)));
+                                break;
+
+                        }
+                        break;
+
+                    case 3:
+                        System.out.println("예매를 취소하시겠습니까?");
+                        System.out.println("1. 예");
+                        System.out.println("2. 아니오");
+
+                        int num = 0;
+
+                        if(num == 1){
+                            System.out.println("예매하신 영화관을 입력해주세요");
+
+                            System.out.println("예매하신 자리를 입력해주세요");
+                        } else if(num==2){
+                            break;
+                        } break;
+
+                    case 4:
+                        flag = false;
+                        break;
+
+                }
+
+            }
         }
     }
 }
-
 
 
                    /*
