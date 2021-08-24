@@ -2,10 +2,19 @@ package com.nappy.Movie1;
 
 import java.util.*;
 
-public class Theater extends Movie{
+public class Theater extends Movie {
     public int num;
     public Movie movie;
-    public char[][] sheets = new char [10][10];
+
+    int  [][] seats = new int[10][10];
+
+    boolean isRun = true;
+
+    String strColumn;
+    char inputColumn;
+    int rowNum;
+    int [][] reservedNumber = new int [4][5];
+
     public Theater() {
     }
 

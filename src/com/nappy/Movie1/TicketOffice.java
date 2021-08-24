@@ -15,9 +15,10 @@ public class TicketOffice {
         String name = "";
         name = sc.nextLine();
         MovieMgrImpl mgr = new MovieMgrImpl();
+        Theater theater = new Theater();
         Search search = new Search();
         String mvName = "";
-        String mvDir ="";
+        String mvDir = "";
 
 
         if (name.equals("cheong")) {
@@ -116,14 +117,79 @@ public class TicketOffice {
                 sc.nextLine();
                 switch (selectNum) {
                     case 1:
-                        System.out.println("");
+                        System.out.println("영화를 골라주세요");
+                        for (int i = 0; i < mgr.index; i++) {
+                            System.out.println(mgr.theaters[i] + "번 상영관의 영화는 " + mvName);
+                            String name1 = mvName;
+                            if (name1.equals(mvName)) {
+                                System.out.println("고객님께서 선택하신 영화는 " + mvName + "입니다");
+
+                                do {
+                                    System.out.println();
+                                    System.out.println("────────────────────────────────────SCREEN────────────────────────────────────");
+                                    System.out.println();
+                                    for (int k = 0; k < theater.seats.length; k++) {
+                                        System.out.print(" [ " + (k + 1) + " ] ");
+                                    }
+                                    System.out.println(" [행] ");
+                                    for (int o = 0; o < theater.seats.length; o++) {
+                                        System.out.println();
+                                        for (int j = 0; j < theater.seats[i].length; j++) {
+                                            if (theater.seats[i][j] == 0) {
+                                                System.out.print("[ □ ]");
+                                            } else {
+                                                System.out.print("[ ■ ]");
+                                            }
+                                        }
+                                        System.out.println(" [ " + (char) (i + 65) + " ] 열");
+                                    }
+                                    System.out.print("───────────────────────────────────────────────────────────────────────────────");
+                                    System.out.print("\n예약하실 좌석의 열을 입력해주세요 (예약종료는 exit) : ");
+                                    theater.strColumn = sc.next();
+                                    if (theater.strColumn.equals("exit")) {
+                                        System.out.println("종료되었습니다");
+                                        break;
+                                    }
+                                    theater.inputColumn = theater.strColumn.trim().charAt(0);
+                                    System.out.println("입력한 열 : " + theater.inputColumn);
+                                    if (theater.inputColumn < 65 || theater.inputColumn > 74) {
+                                        System.out.println("선택할 수 없는 좌석입니다");
+                                        continue;
+                                    }
+                                    int column = theater.inputColumn - 65;
+                                    System.out.print("예약하실 좌석의 행 번호를 입력해주세요 : ");
+                                    theater.rowNum = sc.nextInt();
+                                    if (theater.rowNum < 1 || theater.rowNum > 10) {
+                                        System.out.println("선택할 수 없는 행 번호입니다");
+                                        continue;
+                                    }
+                                    System.out.println("선택하신 좌석은 : " + theater.inputColumn + " 열이고 " + theater.rowNum + " 행입니다");
+                                    System.out.println("예약 완료 하시겠습니까 ? (Yes / No) : ");
+                                    String s = sc.next();
+                                    if (s.equals("y") || s.equals("Y")) {
+                                        theater.seats[column][theater.rowNum - 1] = 1;
+                                        System.out.println("예약이 완료되었습니다");
+                                        for (int z = 0; z < theater.seats.length; z++)
+                                            for (int x = 0; x < theater.seats[i].length; x++) {
+                                                theater.reservedNumber[z][x] = (int) (Math.random() * 100000);
+                                                System.out.println("고객님의 예매번호는 [%d-%d]입니다");
+                                            }
+
+                                    } else {
+                                        System.out.println("취소되었습니다");
+                                        theater.isRun = false;
+                                    }
+                                } while (theater.isRun);
+                            }
+
+                        }
+
                         break;
 
                     case 2:
                         sc.reset();
                         System.out.println("1. 제목으로 검색");
                         System.out.println("2. 감독으로 검색");
-                        System.out.println("3. 장르로 검색");
 
                         int selectNum1 = sc.nextInt();
                         sc.nextLine();
@@ -143,19 +209,35 @@ public class TicketOffice {
                         break;
 
                     case 3:
-                        System.out.println("예매를 취소하시겠습니까?");
-                        System.out.println("1. 예");
-                        System.out.println("2. 아니오");
+                        System.out.println("예매 번호를 입력해주세요.");
+                        int select1 = Integer.parseInt(sc.nextLine());
 
-                        int num = 0;
+                        for (int i = 0; i < theater.seats.length; i++) {
+                            for (int j = 0; j < theater.seats[i].length; j++) {
+                                if (select1 == theater.reservedNumber[i][j]) {
+                                    System.out.printf("고객님이 예매하신 좌석은 [%d-%d] 입니다.\n", i + 1, j + 1);
+                                }
+                            }
+                        }
 
-                        if(num == 1){
-                            System.out.println("예매하신 영화관을 입력해주세요");
+                        System.out.println("예매를 취소 하시겠습니까 ?");
+                        System.out.println("네(1) , 아니오(2) 중 하나를 입력하세요.");
+                        int select2 = (int) Integer.parseInt(sc.nextLine());
+                        switch (select2) {
+                            case 1:
+                                for (int k = 0; k < theater.reservedNumber.length; k++) {
+                                    for (int o = 0; o < theater.reservedNumber.length; o++) {
+                                        if (theater.reservedNumber[k][o] == select1) {
+                                            theater.seats[k][o] = Integer.parseInt((k + 1) + "-" + (o + 1));
+                                            theater.reservedNumber[k][o] = 0;
+                                            System.out.println("예매가 취소되었습니다.");
+                                        }
+                                    }
+                                }
 
-                            System.out.println("예매하신 자리를 입력해주세요");
-                        } else if(num==2){
-                            break;
-                        } break;
+                                break;
+                        }
+                        break;
 
                     case 4:
                         flag = false;
@@ -168,60 +250,3 @@ public class TicketOffice {
     }
 }
 
-
-                   /*
-                    case 3:
-                        System.out.println("제목을 입력");
-                        mvName = sc.next();
-                        System.out.println(Arrays.toString(movieMgr.search(mvName)));
-                        break;
-                    case 4:
-                        System.out.println("찾고자하는 감독을 입력하세요 : ");
-                        mvName = sc.next();
-                        System.out.println(Arrays.toString(movieMgr.searchDirector(mvName)));
-                        break;
-                    case 5:
-                        System.out.print("찾고자하는 등급을 입력하세요 : ");
-                        sc.nextLine();
-                        mvGr1 = sc.next();
-                        System.out.println(Arrays.toString(movieMgr.searchGenre(mvGr1)));
-                        break;
-                    case 6:
-                        System.out.print("삭제하고자하는 제목을 입력하세요 : ");
-                        mvName = sc.next();
-                        movieMgr.delete(mvName);
-                        System.out.println("삭제완료");
-                        break;
-
-                    case 7:
-                        System.out.println("1. 영화관 추가");
-                        System.out.println("2. 영화관 삭제");
-                        int num1 = sc.nextInt();
-                        if (num1 == 1) {
-                            System.out.println("몇 번 영화관을 추가하시겠습니까");
-                            int thNum = sc.nextInt();
-                            movieMgr.add(new Theater(thNum));
-                            for (Theater t : MovieMgrImpl.getNum()) {
-                                if (t != null) {
-                                    System.out.println(t.getNum());
-                                }
-                            }
-
-                        } else if ( num1 == 2){
-                            System.out.println("몇번 영화관을 삭제하시겠습니까?");
-                            int thNum = sc.nextInt();
-                            movieMgr.delete(thNum);
-                        }
-                    case 8:
-                        for (int i = 0; i < mvName.length(); i++)
-                            System.out.println("이름: " + mvName[i]);
-                        break;
-
-                    case 0:
-                        flag = false;
-                        break;
-                }
-            }
-        }
-    }
-}*/
