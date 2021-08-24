@@ -61,7 +61,7 @@ public class TicketOffice {
                     case 3:
                         sc.reset();
                         for (int i = 0; i < mgr.index; i++) {
-                            System.out.println(mgr.theaters[i] + "번 상영관의 영화는 " + mvName);
+                            System.out.println(mgr.theaters[i].getNum() + "번 상영관의 영화는 " + mgr.theaters[i].getTitle());
                         }
                         break;
 
