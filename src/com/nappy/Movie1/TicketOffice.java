@@ -61,7 +61,7 @@ public class TicketOffice {
                     case 3:
                         sc.reset();
                         for (int i = 0; i < mgr.index; i++) {
-                            System.out.println(mgr.theaters[i].getNum() + "번 상영관의 영화는 " + mgr.theaters[i].getTitle());
+                            System.out.println(mgr.theaters[i].getNum() + "번 상영관의 영화는 " + mgr.theaters[i].movie.getTitle());
                         }
                         break;
 
@@ -119,7 +119,7 @@ public class TicketOffice {
                     case 1:
                         System.out.println("영화를 골라주세요");
                         for (int i = 0; i < mgr.index; i++) {
-                            System.out.println(mgr.theaters[i] + "번 상영관의 영화는 " + mvName);
+                            System.out.println(mgr.theaters[i] + "번 상영관의 영화는 " + mgr.theaters[i].getTitle());
                             String name1 = mvName;
                             if (name1.equals(mvName)) {
                                 System.out.println("고객님께서 선택하신 영화는 " + mvName + "입니다");
